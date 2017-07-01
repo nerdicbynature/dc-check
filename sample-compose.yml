@@ -1,0 +1,24 @@
+version: '2'
+services:
+  myservice:
+    image: ubuntu:latest
+{{- if or (eq .Values.PLAINTEXT_PORT_PUBLIC "true") (eq .Values.SSL_PORT_PUBLIC "true") }}
+    ports:
+{{- end }}
+{{- if eq .Values.PLAINTEXT_PORT_PUBLIC "true" }}
+    - ${PLAINTEXT_PORT}:8080/tcp
+{{- end }}
+{{- if eq .Values.SSL_PORT_PUBLIC "true" }}
+    - ${SSL_PORT}:8443/tcp
+{{- end }}
+{{- if not (and (eq .Values.PLAINTEXT_PORT_PUBLIC "true") (eq .Values.SSL_PORT_PUBLIC "true")) }}
+    expose:
+{{- end }}
+{{- if not (eq .Values.PLAINTEXT_PORT_PUBLIC "true") }}
+    - ${PLAINTEXT_PORT}:8080/tcp
+{{- end }}
+{{- if not (eq .Values.SSL_PORT_PUBLIC "true") }}
+    - ${SSL_PORT}:8443/tcp
+{{- end }}
+    environment:
+      LOGLEVEL: ${LOGLEVEL}

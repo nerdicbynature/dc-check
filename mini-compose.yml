@@ -1,0 +1,8 @@
+{{- if eq .Values.PLAINTEXT_PORT_PUBLIC "true" }}
+  ports:
+  - 80:8080/tcp
+{{- else }}
+  expose:
+  - 80:8080/tcp
+{{- end }}
+
