@@ -37,7 +37,7 @@ mini-compose.yml:
   - 80:8080/tcp
 {{- else }}
   expose:
-  - 80:8080/tcp
+  - 8080/tcp
 {{- end }}
 ```
 
@@ -71,7 +71,7 @@ will result in:
 
 ```
 expose:
-- 80:8080/tcp
+- 8080/tcp
 ```
 
 
@@ -90,7 +90,7 @@ services:
     ports:
     - ${SSL_PORT}:8443/tcp
     expose:
-    - ${PLAINTEXT_PORT}:8080/tcp
+    - 8080/tcp
     environment:
       LOGLEVEL: ${LOGLEVEL}
 ```
@@ -104,8 +104,8 @@ services:
   myservice:
     image: ubuntu:latest
     expose:
-    - ${PLAINTEXT_PORT}:8080/tcp
-    - ${SSL_PORT}:8443/tcp
+    - 8080/tcp
+    - 8443/tcp
     environment:
       LOGLEVEL: ${LOGLEVEL}
 ```

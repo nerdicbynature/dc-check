@@ -15,10 +15,10 @@ services:
     expose:
 {{- end }}
 {{- if not (eq .Values.PLAINTEXT_PORT_PUBLIC "true") }}
-    - ${PLAINTEXT_PORT}:8080/tcp
+    - 8080/tcp
 {{- end }}
 {{- if not (eq .Values.SSL_PORT_PUBLIC "true") }}
-    - ${SSL_PORT}:8443/tcp
+    - 8443/tcp
 {{- end }}
     environment:
       LOGLEVEL: ${LOGLEVEL}
